@@ -38,6 +38,24 @@ class RobotSsh {
     return Process.run('ssh', args);
   }
 
+  Future<Process> start(
+    int teamNumber,
+    String command, {
+    List<String> sshArgs = const [],
+  }) async {
+    final host = await resolveRobotHost(teamNumber);
+    if (host.isEmpty) {
+      throw StateError('Unable to resolve robot host.');
+    }
+    final args = [
+      ...defaultArgs,
+      ...sshArgs,
+      '$user@$host',
+      command,
+    ];
+    return Process.start('ssh', args);
+  }
+
   Future<ProcessResult> upload(
     int teamNumber, {
     required String localPath,

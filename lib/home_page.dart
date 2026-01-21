@@ -13,6 +13,7 @@ import 'package:yagsl_app/configPages/module_config.dart';
 import 'package:yagsl_app/configPages/physical_properties.dart';
 import 'package:yagsl_app/configPages/pidf_properties.dart';
 import 'package:yagsl_app/configPages/swervedrive.dart';
+import 'package:yagsl_app/logs/robot_logs_page.dart';
 import 'package:yagsl_app/persistent_bottom_bar_scaffold.dart';
 import 'package:yagsl_app/robot_tests/absolute_encoder_offsets_page.dart';
 import 'package:yagsl_app/robot_tests/drivebase_tests_menu_page.dart';
@@ -446,6 +447,23 @@ class TabPage3 extends StatelessWidget {
                 logStore.lines.join('\n'),
               ),
             ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: ElevatedButton.icon(
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const RobotLogsPage(),
+            ));
+          },
+          icon: const Icon(Icons.terminal),
+          label: const Text('Robot logs'),
+          style: ElevatedButton.styleFrom(
+            alignment: Alignment.centerLeft,
+            minimumSize: const Size(double.infinity, 50),
+            shape: const BeveledRectangleBorder(),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -755,37 +773,6 @@ class _TabPage2State extends State<TabPage2> {
               }
                   : null,
               child: const Text('Drivebase tests'),
-              style: ElevatedButton.styleFrom(
-                alignment: Alignment.centerLeft,
-                minimumSize: const Size(double.infinity, 50),
-                shape: const BeveledRectangleBorder(),
-              ),
-            ),
-            const SizedBox(height: 12),
-            ElevatedButton(
-              onPressed: testsEnabled
-                  ? () async {
-                      try {
-                        await _runTest(
-                          connectionManager,
-                          dataController.nt4Status,
-                        );
-                      } catch (error) {
-                        if (!mounted) {
-                          return;
-                        }
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Test failed: $error'),
-                          ),
-                        );
-                      }
-                    }
-                  : null,
-              child: Text(
-                _testNumberLabel ??
-                    'Run test (sets SmartDashboard/test/running)',
-              ),
               style: ElevatedButton.styleFrom(
                 alignment: Alignment.centerLeft,
                 minimumSize: const Size(double.infinity, 50),
