@@ -12,9 +12,16 @@ part 'swerve_drive.g.dart';
 class SwerveDrive {
   SwerveDrive(this.imu, this.invertedIMU);
 
+  @JsonKey(name: r'$schema')
+  String? schema;
   Imu imu;
   bool invertedIMU;
-  var modules = ["frontleft.json","frontright.json","backleft.json","backright.json"];
+  List<String> modules = [
+    "frontleft.json",
+    "frontright.json",
+    "backleft.json",
+    "backright.json"
+  ];
 
   /// A necessary factory constructor for creating a new User instance
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.

@@ -1,4 +1,4 @@
-package com.example.persistent_bottom_bar
+package com.yass.yagsl_configurator
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -12,13 +12,22 @@ part 'module_properties.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable(explicitToJson: true)
 class ModuleProperties {
-  ModuleProperties(this.optimalVoltage, this.wheelGripCoefficientOfFriction, this.currentLimit, this.conversionFactor, this.rampRate);
+  ModuleProperties(
+    this.conversionFactors,
+    this.currentLimit,
+    this.rampRate,
+    this.optimalVoltage,
+    this.robotMass,
+    this.wheelGripCoefficientOfFriction,
+  );
 
-  int optimalVoltage;
-  double wheelGripCoefficientOfFriction;
+  ConversionFactors conversionFactors;
   CurrentLimit currentLimit;
-  ConversionFactor conversionFactor;
   RampRate rampRate;
+  int optimalVoltage;
+  @JsonKey(defaultValue: 0)
+  double robotMass;
+  double wheelGripCoefficientOfFriction;
 
   /// A necessary factory constructor for creating a new User instance
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.

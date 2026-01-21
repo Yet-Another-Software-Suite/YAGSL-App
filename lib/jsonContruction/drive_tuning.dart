@@ -12,9 +12,9 @@ part 'drive_tuning.g.dart';
 class DriveTuning {
   DriveTuning(this.p, this.i, this.d, this.f, this.iz);
 
-  double p = 0.0020645;
-  double i = 0.0;
-  double d = 0.0;
+  double p = 0.00023;
+  double i = 0.0000002;
+  double d = 1.0;
   double f = 0.0;
   double iz = 0.0;
 

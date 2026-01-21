@@ -14,7 +14,15 @@ part 'module.g.dart';
 /// JSON serialization logic to be generated.
 @JsonSerializable(explicitToJson: true)
 class Module {
-  Module(this.location, this.absoluteEncoderOffset, this.drive, this.angle, this.encoder, this.inverted, this.absoluteEncoderInverted);
+  Module(
+    this.location,
+    this.absoluteEncoderOffset,
+    this.drive,
+    this.angle,
+    this.encoder,
+    this.inverted, [
+    this.absoluteEncoderInverted,
+  ]);
 
   Location location;
   double absoluteEncoderOffset;
@@ -22,7 +30,7 @@ class Module {
   Angle angle;
   ModuleEncoder encoder;
   Inverted inverted;
-  bool absoluteEncoderInverted;
+  bool? absoluteEncoderInverted;
 
   /// A necessary factory constructor for creating a new User instance
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.

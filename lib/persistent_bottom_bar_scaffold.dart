@@ -50,28 +50,34 @@ class _PersistentBottomBarScaffoldState
         ),
 
         /// Define the persistent bottom bar
-        bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Colors.green,
-          currentIndex: _selectedTab,
-          onTap: (index) {
+        bottomNavigationBar: NavigationBar(
+          selectedIndex: _selectedTab,
+          onDestinationSelected: (index) {
+            final item = widget.items[index];
+            if (!item.enabled) {
+              final message = item.disabledMessage ??
+                  'Complete configuration to unlock this tab.';
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(message)),
+              );
+              return;
+            }
             /// Check if the tab that the user is pressing is currently selected
             if (index == _selectedTab) {
               /// if you want to pop the current tab to its root then use
               widget.items[index].navigatorkey?.currentState
                   ?.popUntil((route) => route.isFirst);
-
-              /// if you want to pop the current tab to its last page
-              /// then use
-              // widget.items[index].navigatorkey?.currentState?.pop();
             } else {
               setState(() {
                 _selectedTab = index;
               });
             }
           },
-          items: widget.items
-              .map((item) => BottomNavigationBarItem(
-                  icon: Icon(item.icon), label: item.title))
+          destinations: widget.items
+              .map((item) => NavigationDestination(
+                    icon: Icon(item.icon),
+                    label: item.title,
+                  ))
               .toList(),
         ),
       ),
@@ -85,10 +91,15 @@ class PersistentTabItem {
   final GlobalKey<NavigatorState>? navigatorkey;
   final String title;
   final IconData icon;
+  final bool enabled;
+  final String? disabledMessage;
 
-  PersistentTabItem(
-      {required this.tab,
-      this.navigatorkey,
-      required this.title,
-      required this.icon});
+  PersistentTabItem({
+    required this.tab,
+    this.navigatorkey,
+    required this.title,
+    required this.icon,
+    this.enabled = true,
+    this.disabledMessage,
+  });
 }

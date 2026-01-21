@@ -13,7 +13,7 @@ Module _$ModuleFromJson(Map<String, dynamic> json) => Module(
       Angle.fromJson(json['angle'] as Map<String, dynamic>),
       ModuleEncoder.fromJson(json['encoder'] as Map<String, dynamic>),
       Inverted.fromJson(json['inverted'] as Map<String, dynamic>),
-      json['absoluteEncoderInverted'] as bool,
+      json['absoluteEncoderInverted'] as bool?,
     );
 
 Map<String, dynamic> _$ModuleToJson(Module instance) => <String, dynamic>{

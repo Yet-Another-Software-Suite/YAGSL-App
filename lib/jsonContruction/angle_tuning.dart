@@ -12,7 +12,7 @@ part 'angle_tuning.g.dart';
 class AngleTuning {
   AngleTuning(this.p, this.i, this.d, this.f, this.iz);
 
-  double p = 0.0020645;
+  double p = 0.01;
   double i = 0.0;
   double d = 0.0;
   double f = 0.0;

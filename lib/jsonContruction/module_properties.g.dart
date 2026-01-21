@@ -8,19 +8,21 @@ part of 'module_properties.dart';
 
 ModuleProperties _$ModulePropertiesFromJson(Map<String, dynamic> json) =>
     ModuleProperties(
-      (json['optimalVoltage'] as num).toInt(),
-      (json['wheelGripCoefficientOfFriction'] as num).toDouble(),
+      ConversionFactors.fromJson(
+          json['conversionFactors'] as Map<String, dynamic>),
       CurrentLimit.fromJson(json['currentLimit'] as Map<String, dynamic>),
-      ConversionFactor.fromJson(
-          json['conversionFactor'] as Map<String, dynamic>),
       RampRate.fromJson(json['rampRate'] as Map<String, dynamic>),
+      (json['optimalVoltage'] as num).toInt(),
+      (json['robotMass'] as num?)?.toDouble() ?? 0,
+      (json['wheelGripCoefficientOfFriction'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$ModulePropertiesToJson(ModuleProperties instance) =>
     <String, dynamic>{
-      'optimalVoltage': instance.optimalVoltage,
-      'wheelGripCoefficientOfFriction': instance.wheelGripCoefficientOfFriction,
+      'conversionFactors': instance.conversionFactors.toJson(),
       'currentLimit': instance.currentLimit.toJson(),
-      'conversionFactor': instance.conversionFactor.toJson(),
       'rampRate': instance.rampRate.toJson(),
+      'optimalVoltage': instance.optimalVoltage,
+      'robotMass': instance.robotMass,
+      'wheelGripCoefficientOfFriction': instance.wheelGripCoefficientOfFriction,
     };

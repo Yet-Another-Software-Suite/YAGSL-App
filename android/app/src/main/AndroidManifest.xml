@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.persistent_bottom_bar">
+    package="com.yass.yagsl_configurator">
    <application
         android:label="YAGSL Configurator"
         android:icon="@mipmap/launcher_icon">

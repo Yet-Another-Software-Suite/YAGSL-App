@@ -12,19 +12,30 @@ class ControllerProperties {
   ControllerProperties(this.angleJoystickRadiusDeadband, this.heading);
 
   double angleJoystickRadiusDeadband;
-  Map<String, double> heading = {
-    "p": 0.4,
-    "i": 0.0,
-    "d": 0.01
-  };
+  Heading heading;
 
   /// A necessary factory constructor for creating a new User instance
   /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.
   /// The constructor is named after the source class, in this case, User.
-  factory ControllerProperties.fromJson(Map<String, dynamic> json) => _$ControllerPropertiesFromJson(json);
+  factory ControllerProperties.fromJson(Map<String, dynamic> json) =>
+      _$ControllerPropertiesFromJson(json);
 
   /// `toJson` is the convention for a class to declare support for serialization
   /// to JSON. The implementation simply calls the private, generated
   /// helper method `_$UserToJson`.
   Map<String, dynamic> toJson() => _$ControllerPropertiesToJson(this);
+}
+
+@JsonSerializable()
+class Heading {
+  Heading(this.p, this.i, this.d);
+
+  double p;
+  double i;
+  double d;
+
+  factory Heading.fromJson(Map<String, dynamic> json) =>
+      _$HeadingFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HeadingToJson(this);
 }

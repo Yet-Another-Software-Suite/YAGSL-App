@@ -28,3 +28,6 @@ doc/api/
 
 # Don't push large ZIPs
 assets/YAGSL-Tuner.zip
+
+# Reference files
+reference/
