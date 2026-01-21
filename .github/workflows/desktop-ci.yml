@@ -17,8 +17,6 @@ jobs:
             target: linux
           - os: windows-latest
             target: windows
-          - os: macos-latest
-            target: macos
     steps:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
